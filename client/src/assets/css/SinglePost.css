@@ -1,0 +1,68 @@
+.single-post {
+    display: flex;
+    width: 70%;
+    margin: 50px auto;
+    justify-content: space-evenly;
+    height: 400px;
+}
+.left {
+    display: flex;
+    flex-direction: column;
+}
+.btns {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+.single-post .post-card {
+    box-shadow: none;
+    border-radius: 0; 
+    min-height: 350px;
+    width: 350px;
+}
+.single-post button {
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+  background-color: #609966;
+  border: none;
+  border-radius: 7px;
+  color: white;
+}
+.single-post button:hover {
+    background-color: #40513B;
+    transform: scale(1.1);
+}
+.right {
+    display: flex;
+    flex-direction: column;
+}
+.right-top {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+textarea {
+    padding: 10px;
+    width: 350px;
+    height: 100px;   
+}
+.comments-list {
+    background-color: white;
+    flex: 1;
+    margin: 15px auto 5px auto;
+    padding: 10px;
+    width: 350px;
+    overflow-y: auto;
+}
+.comment-by {
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: 600;
+}
+.comment {
+    border-bottom: 1px dotted #609966;
+    padding-bottom: 5px;
+    font-size: 0.8rem;
+}

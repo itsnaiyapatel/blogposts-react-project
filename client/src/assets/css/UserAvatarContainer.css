@@ -1,0 +1,17 @@
+.user-avatar-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.avatar {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,26 @@
+.post-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    width: 300px;
+    min-height: 200px;
+    justify-content: space-between;
+    box-shadow: 5px 5px 20px 1px #000000;
+    overflow: hidden;
+}
+.post-card .top {
+    background-color: #9DC08B;
+    padding: 10px;
+}
+.post-card .postText {
+    flex: 1;
+    background-color: white;
+    color: #000000;
+    padding: 10px;
+}
+.post-card .user-avatar-container {
+    padding: 10px;
+    background-color: #9DC08B;
+    color: #000000;
+}
+

@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;500&display=swap');
+
+.app {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    height: 100%;
+   
+}
+
+a {
+    text-decoration: none;
+}
