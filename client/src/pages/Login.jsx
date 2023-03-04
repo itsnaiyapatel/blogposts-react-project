@@ -1,10 +1,9 @@
 import React from 'react'
+import LoginRegisterCard from '../components/LoginRegisterCard'
 
 function Login() {
   return (
-    <div>
-      Login
-    </div>
+    <LoginRegisterCard isLogin={true}/>
   )
 }
 

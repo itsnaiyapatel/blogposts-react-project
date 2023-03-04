@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import {Formik, Form, Field } from 'formik'
 import PostCard from '../components/PostCard'
 import '../assets/css/SinglePost.css'
 
@@ -79,7 +80,7 @@ function SinglePost() {
       <div className="right">
 
         <div className="right-top">
-          <textarea placeholder="Comment here..">
+          <textarea placeholder="Comment here.." required>
           </textarea>
           <button>Submit</button>
         </div>

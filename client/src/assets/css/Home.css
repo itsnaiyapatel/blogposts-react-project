@@ -1,7 +1,5 @@
 .home {
     display: flex;
-    width: 70%;
-    margin: 70px auto;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 30px;

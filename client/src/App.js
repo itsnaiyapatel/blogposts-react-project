@@ -8,20 +8,26 @@ import AddPost from './pages/AddPost'
 import Profile from './pages/Profile'
 import './assets/css/App.css'
 import SinglePost from "./pages/SinglePost";
+import Footer from "./components/Footer";
+import EditPost from "./pages/EditPost";
 
 function App() {
 
   return (
     <div className="app">
-      <Navbar />      
+      <Navbar />
+      <div className="all-pages">
       <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/register' element={<Registration />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/addPost' element={<AddPost />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/singlePost' element={<SinglePost />} />
-        </Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/register' element={<Registration />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/addPost' element={<AddPost />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/singlePost' element={<SinglePost />} />
+        <Route path='/editPost' element={<EditPost />} />
+      </Routes>
+      </div>      
+      <Footer />
     </div>
   );
 }

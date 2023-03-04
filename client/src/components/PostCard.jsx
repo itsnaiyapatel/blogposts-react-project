@@ -3,6 +3,7 @@ import UserAvatarContainer from './UserAvatarContainer'
 import '../assets/css/PostCard.css'
 import { Link } from 'react-router-dom'
 
+
 function PostCard({ post }) { 
   return (
     <div className='post-card'>

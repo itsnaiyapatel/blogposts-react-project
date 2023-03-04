@@ -1,7 +1,5 @@
 .single-post {
     display: flex;
-    width: 70%;
-    margin: 50px auto;
     justify-content: space-evenly;
     height: 400px;
 }
