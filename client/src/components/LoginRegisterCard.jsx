@@ -3,9 +3,7 @@ import { Formik, Form, Field, ErrorMessage} from 'formik'
 import * as yup from 'yup'
 import '../assets/css/LoginRegisterCard.css'
 
-
-function LoginRegisterCard({isLogin}) {
-
+function LoginRegisterCard({isLogin, handleSubmit}) {
 
   let initialValues = {
     userName: '',
@@ -24,11 +22,10 @@ function LoginRegisterCard({isLogin}) {
     validationSchema = null;
   }
 
-
   return (
     <div className='login-register-card'>
 
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(data) => alert(JSON.stringify(data))}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 
         <Form className='login-register-form'>
 

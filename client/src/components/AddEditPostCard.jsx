@@ -4,7 +4,7 @@ import '../assets/css/AddEditPostCard.css'
 import * as yup from 'yup'
 
 
-function AddEditPostCard({ doesUserWantToAdd, postObj }) {
+function AddEditPostCard({ doesUserWantToAdd, postObj, handleSubmit }) {
 
 
   const validationSchema = yup.object().shape({
@@ -28,12 +28,9 @@ function AddEditPostCard({ doesUserWantToAdd, postObj }) {
     };
   }
 
-
   return (
     <div className='add-edit-post-card'>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(data) => {
-        alert(JSON.stringify(data));
-      }}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         <Form className='add-edit-post'>
 
           <h3>{doesUserWantToAdd ? 'Add Post' : 'Edit Post'}</h3>

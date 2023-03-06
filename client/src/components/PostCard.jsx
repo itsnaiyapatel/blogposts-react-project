@@ -1,13 +1,11 @@
-import React, { useContext } from 'react'
-import UserAvatarContainer from './UserAvatarContainer'
+import React from 'react'
+// import UserAvatarContainer from './UserAvatarContainer'
 import '../assets/css/PostCard.css'
 import { Link } from 'react-router-dom'
-
 
 function PostCard({ post }) { 
   return (
     <div className='post-card'>
-
       <div className="top">
         <h3 className='title'>{post.title} </h3>
         <h5 className='categories'>#{post.categories}</h5>
@@ -17,7 +15,7 @@ function PostCard({ post }) {
         <p>{post.postText}</p>
       </Link>
 
-      <UserAvatarContainer profileImage={post.postBy.profileImage} userName={post.postBy.userName} />
+      {/* <UserAvatarContainer profileImage={post.postBy.profileImage} userName={post.postBy.userName} /> */}
     </div>
   )
 }

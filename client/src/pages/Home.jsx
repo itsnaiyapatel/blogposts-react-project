@@ -1,26 +1,34 @@
 import React from 'react'
 import PostCard from '../components/PostCard'
 import '../assets/css/Home.css'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 function Home() {
 
-  const post = {
-    id: 'id',
-    title: 'title',
-    postText: 'postText',
-    categories: 'categories',
-    postBy: {profileImage: 'https://pub-static.fotor.com/assets/projects/pages/d5bdd0513a0740a8a38752dbc32586d0/fotor-03d1a91a0cec4542927f53c87e0599f6.jpg', userName: 'userName'},
-  }
+  const [allPosts, setAllPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/posts').then((res) => {
+    setAllPosts(res.data);
+    console.log(res.data);
   
+    });
+  }, []);
 
   return (
     <div className='home'>
-      <PostCard post={post}/>
-      <PostCard post={post}/>
-      <PostCard post={post}/>
-      <PostCard post={post}/>
+      {allPosts.map((post) => { 
+        return (
+          <PostCard post={post} key={post.id}/>
+        )       
+      })}      
     </div>
   )
 }
 
 export default Home
+
+
+

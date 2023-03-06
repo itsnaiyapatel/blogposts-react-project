@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import {Formik, Form, Field } from 'formik'
+import React from 'react'
 import PostCard from '../components/PostCard'
 import '../assets/css/SinglePost.css'
 
@@ -25,46 +24,7 @@ function SinglePost() {
     commentBody: 'hey',
     commentBy: 'Naiya Patel'
   },
-  {
-    commentBody: 'I really liked Chikki.',
-    commentBy: 'Sonu Patel'
-  },{
-    commentBody: 'hey',
-    commentBy: 'Naiya Patel'
-  },
-  {
-    commentBody: 'I really liked Chikki.',
-    commentBy: 'Sonu Patel'
-  }
-,{
-  commentBody: 'hey',
-  commentBy: 'Naiya Patel'
-},
-{
-  commentBody: 'I really liked Chikki.',
-  commentBy: 'Sonu Patel'
-},{
-  commentBody: 'hey',
-  commentBy: 'Naiya Patel'
-},
-{
-  commentBody: 'I really liked Chikki.',
-  commentBy: 'Sonu Patel'
-},{
-  commentBody: 'hey',
-  commentBy: 'Naiya Patel'
-},
-{
-  commentBody: 'I really liked Chikki.',
-  commentBy: 'Sonu Patel'
-},{
-  commentBody: 'hey',
-  commentBy: 'Naiya Patel'
-},
-{
-  commentBody: 'I really liked Chikki.',
-  commentBy: 'Sonu Patel'
-}]
+]
 
 
   return (

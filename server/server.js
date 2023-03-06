@@ -8,6 +8,18 @@ app.use(express.json());
 
 const db = require('./models');
 
+// static image folder
+
+app.use('/images', express.static('images'));
+
+// Create routes
+
+const userRouter = require('./routes/Users');
+app.use('/auth', userRouter);
+
+const postRouter = require('./routes/Posts');
+app.use('/posts', postRouter);
+
 // start server with database
 
 db.sequelize.sync().then(() => {
