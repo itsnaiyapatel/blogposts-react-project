@@ -11,7 +11,7 @@
     margin-bottom: 15px;
 }
 label {
-    margin-bottom: 7px;
+    margin-bottom: 2px;
     font-size: 0.9rem;
 }
 input {
@@ -40,4 +40,8 @@ input {
 .login-register-form button:hover {
     background-color: #40513B;
     transform: scale(1.05);
+}
+
+.input-error {
+    border: 1px solid red;
 }
