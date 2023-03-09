@@ -6,21 +6,27 @@ const { sign } = require('jsonwebtoken')
 const validationToken = require('../middleware/validationToken')
 require('dotenv').config();
 const secret = process.env.JWT_SECRET;
+const imageController = require('../controllers/imageController')
+
 
 
 // Registration
 
-router.post('/registration', async (req, res) => {
+router.post('/registration', imageController.upload.single('profileImage'), async (req, res) => {
    const { userName, password } = req.body;
-   if (!req.body.profileImage) {
+   if (!req.file) {
     var profileImage = 'images/defaultProfileImage.jpg';
    }
-
+   else {
+        profileImage = req.file.path;
+        profileImage = ((profileImage).replace('\\', '/'));
+   }
+   console.log(profileImage);
     bcrypt.hash(password, 10).then((hash) => {
         Users.create({
             userName: userName,
             password: hash,
-            profileImage: profileImage,
+            profileImage: profileImage
         });
         return res.json({message: 'Registration Successful.'});
     });
