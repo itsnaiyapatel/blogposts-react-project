@@ -16,9 +16,33 @@ router.post('/addpost', async (req, res) => {
 
 //getting posts from the database
 
-router.get('/', async (req, res) => {
-    const allPosts = await Posts.findAll();
-    return res.json(allPosts);
+router.get('/', async (req, res) => {    
+    try {        
+        const allPosts = await sequelize.query(
+            `SELECT Posts.id as id, title, categories, postText, userName, profileImage FROM Posts, Users WHERE Users.id = Posts.UserId`, 
+            {type: sequelize.QueryTypes.SELECT}
+        )
+        return res.json(allPosts);
+    } catch (error) {
+        return res.json({ error: error });
+    }
 });
+
+// getting single post from allposts
+
+router.get('/byId/:id', async (req, res) => {
+    const id = req.params.id;
+    try {        
+        const post = await sequelize.query(
+            `SELECT Posts.id as id, title, categories, postText, userName, profileImage FROM Posts, Users WHERE Posts.id = ${id} AND Users.id = Posts.UserId`, 
+            {type: sequelize.QueryTypes.SELECT}
+        )
+        return res.json(post[0]);
+    } catch (error) {
+        return res.json({ error: error });
+    }
+   
+});
+
 
 module.exports = router;

@@ -1,36 +1,45 @@
-import React from 'react'
-import PostCard from '../components/PostCard'
-import '../assets/css/SinglePost.css'
+import React from "react";
+import PostCard from "../components/PostCard";
+import "../assets/css/SinglePost.css";
+import { useParams } from "react-router-dom";
+import axios from "../helper/axiosConfig";
+import { useEffect } from "react";
+
+import { useState } from "react";
 
 function SinglePost() {
 
-  const post = {
-    id: 'id',
-    title: 'title',
-    postText: 'postText',
-    categories: 'categories',
-    postBy: { profileImage: 'https://pub-static.fotor.com/assets/projects/pages/d5bdd0513a0740a8a38752dbc32586d0/fotor-03d1a91a0cec4542927f53c87e0599f6.jpg', userName: 'userName' },
-  }
+  const commentList = [
+    {
+      id: 1,
+      commentBody: "hey",
+      commentBy: "Naiya Patel",
+    },
+    {
+      id: 2,
+      commentBody: "I really liked Chikki.",
+      commentBy: "Sonu Patel",
+    },
+    { id: 3,
+      commentBody: "hey",
+      commentBy: "Naiya Patel",
+    },
+  ];
 
-  const commentList = [{
-    commentBody: 'hey',
-    commentBy: 'Naiya Patel'
-  },
-  {
-    commentBody: 'I really liked Chikki.',
-    commentBy: 'Sonu Patel'
-  },
-  {
-    commentBody: 'hey',
-    commentBy: 'Naiya Patel'
-  },
-]
+  let { id } = useParams();
 
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    axios.get(`/posts/byId/${id}`).then((res) => {
+      setPost(res.data);
+    });
+  }, []);
 
   return (
-    <div className='single-post'>
+    <div className="single-post">
       <div className="left">
-        <PostCard post={post} />
+        <PostCard post={post} key={post.id} />
         <div className="btns">
           <button>Edit</button>
           <button>Delete</button>
@@ -38,29 +47,24 @@ function SinglePost() {
       </div>
 
       <div className="right">
-
         <div className="right-top">
-          <textarea placeholder="Comment here.." required>
-          </textarea>
+          <textarea placeholder="Comment here.." required></textarea>
           <button>Submit</button>
         </div>
 
         <div className="comments-list">
           {commentList.map((cmtObj) => {
             return (
-              <div className="comment">
-                <span className='comment-by'>@{cmtObj.commentBy + ' '}</span>
-              {cmtObj.commentBody}
-            </div>
-            )
-            
+              <div className="comment" key={cmtObj.id}>
+                <span className="comment-by">@{cmtObj.commentBy + " "}</span>
+                {cmtObj.commentBody}
+              </div>
+            );
           })}
-          
         </div>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default SinglePost
+export default SinglePost;

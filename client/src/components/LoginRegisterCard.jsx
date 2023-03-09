@@ -13,24 +13,24 @@ function LoginRegisterCard({isLogin, handleSubmit}) {
 
   let validationSchema = yup.object().shape({
     userName: yup.string().required('Required!').min(2, 'Too Short!').max(20, 'Too Long!'),
-    password: yup.string().required('Required!')
-      .matches(
-        /^(?=.*[a-z])/,
-        " Must Contain One Lowercase Character"
-      )
-      .matches(
-        /^(?=.*[A-Z])/,
-        "  Must Contain One Uppercase Character"
-      )
-      .matches(
-        /^(?=.*[0-9])/,
-        "  Must Contain One Number Character"
-      )
-      .matches(
-        /^(?=.*[!@#\$%\^&\*])/,
-        "  Must Contain  One Special Case Character"
-      )
-      .min(8, 'Too Short!'),
+    password: yup.string().required('Required!'),
+      // .matches(
+      //   /^(?=.*[a-z])/,
+      //   " Must Contain One Lowercase Character"
+      // )
+      // .matches(
+      //   /^(?=.*[A-Z])/,
+      //   "  Must Contain One Uppercase Character"
+      // )
+      // .matches(
+      //   /^(?=.*[0-9])/,
+      //   "  Must Contain One Number Character"
+      // )
+      // .matches(
+      //   /^(?=.*[!@#\$%\^&\*])/,
+      //   "  Must Contain  One Special Case Character"
+      // )
+      // .min(8, 'Too Short!'),
     cpassword: yup.string().required('Required!').oneOf([yup.ref('password'), null], 'Password must match!')  
   });
 

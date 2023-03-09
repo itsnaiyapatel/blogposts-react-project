@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AddEditPostCard from '../components/AddEditPostCard'
-import axios from 'axios'
+import axios from '../helper/axiosConfig'
 import {useNavigate} from 'react-router-dom'
+import { AuthContext } from '../helper/AuthContext'
+
 
 function AddPost() {
+
+  const { auth } = useContext(AuthContext)
   
   let navigate = useNavigate();
   const addPostBtn = (data) => {
-    axios.post('http://localhost:3001/posts/addpost', data).then((res) => {
+    data.UserId = auth.id;
+    axios.post('/posts/addpost', data).then((res) => {
       alert(res.data.message);
       navigate('/');
     })

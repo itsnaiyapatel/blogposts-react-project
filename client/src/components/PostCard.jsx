@@ -1,5 +1,5 @@
 import React from 'react'
-// import UserAvatarContainer from './UserAvatarContainer'
+import UserAvatarContainer from './UserAvatarContainer'
 import '../assets/css/PostCard.css'
 import { Link } from 'react-router-dom'
 
@@ -11,13 +11,15 @@ function PostCard({ post }) {
         <h5 className='categories'>#{post.categories}</h5>
       </div>
 
-      <Link to='/singlePost' className='postText middle'>
+      <Link to={`/singlePost/${post.id}`} className='postText middle'>
         <p>{post.postText}</p>
       </Link>
 
-      {/* <UserAvatarContainer profileImage={post.postBy.profileImage} userName={post.postBy.userName} /> */}
+      {post.profileImage &&    
+
+      <UserAvatarContainer profileImage={`http://localhost:3001/${post.profileImage}`} userName={post.userName} /> }
     </div>
-  )
-}
+  );
+};
 
 export default PostCard
