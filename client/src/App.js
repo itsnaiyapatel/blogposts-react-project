@@ -47,8 +47,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/addPost' element={<AddPost />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/singlePost/:id' element={<SinglePost />} />
-        <Route path='/editPost' element={<EditPost />} />
+        <Route path='/singlePost/:postId' element={<SinglePost />} />
+        <Route path='/editPost/:postId' element={<EditPost />} />  
       </Routes>
       </div>      
       <Footer />      

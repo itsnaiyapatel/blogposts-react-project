@@ -1,20 +1,33 @@
-import React from 'react'
-import AddEditPostCard from '../components/AddEditPostCard'
+import React, {useEffect, useState} from "react";
+import AddEditPostCard from "../components/AddEditPostCard";
+import axios from "../helper/axiosConfig";
+import {useNavigate, useParams} from "react-router-dom";
 
-function EditPost() {
-  const post = {
-    id: 'id',
-    title: 'title',
-    postText: 'postText',
-    categories: 'Programming',
-    postBy: { profileImage: 'https://pub-static.fotor.com/assets/projects/pages/d5bdd0513a0740a8a38752dbc32586d0/fotor-03d1a91a0cec4542927f53c87e0599f6.jpg', userName: 'userName' },
+function EditPost() {  
+
+  let {postId} = useParams();
+  let navigate = useNavigate();
+
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    axios.get(`/posts/byId/${postId}`).then((res) => {
+      setPost(res.data);
+    });
+  }, []);
+
+  const editPostBtn = (data) => {
+    axios.put(`/posts/byId/${postId}`, data).then((res) => {
+      console.log(res.data.message);
+      navigate(`/singlePost/${postId}`);
+    });
   }
 
   return (
     <div>
-      <AddEditPostCard doesUserWantToAdd={false} postObj={post} />
+      <AddEditPostCard doesUserWantToAdd={false} postObj={post} key={post.id} handleSubmit={editPostBtn} />
     </div>
-  )
+  );
 }
 
-export default EditPost
+export default EditPost;

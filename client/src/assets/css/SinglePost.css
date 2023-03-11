@@ -1,7 +1,8 @@
 .single-post {
     display: flex;
     justify-content: space-evenly;
-    height: 400px;
+    flex-wrap: wrap;
+    gap: 50px;
 }
 .left {
     display: flex;
@@ -27,7 +28,7 @@
   border-radius: 7px;
   color: white;
 }
-.single-post button:hover {
+button:hover {
     background-color: #40513B;
     transform: scale(1.1);
 }
@@ -46,13 +47,24 @@ textarea {
     width: 350px;
     height: 100px;   
 }
+
+.input-error {
+    border: 1px solid red;
+}
+
+textarea:focus {
+    outline: none;
+}
+
 .comments-list {
     background-color: white;
-    flex: 1;
     margin: 15px auto 5px auto;
     padding: 10px;
     width: 350px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 60px;
 }
 .comment-by {
     font-size: 0.8rem;
@@ -62,5 +74,13 @@ textarea {
 .comment {
     border-bottom: 1px dotted #609966;
     padding-bottom: 5px;
-    font-size: 0.8rem;
+    font-size: 0.8rem;   
+}
+.comment button {
+   float: right;   
+   width: 25px;
+   height: 25px;
+}
+.comment button:hover, .delete-btn:hover {
+    background-color: red;
 }

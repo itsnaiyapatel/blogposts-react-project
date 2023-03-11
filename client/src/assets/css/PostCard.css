@@ -12,11 +12,13 @@
     background-color: #9DC08B;
     padding: 10px;
 }
-.post-card .postText {
+.post-card .postText {    
     flex: 1;
+    overflow-wrap: break-word;
     background-color: white;
     color: #000000;
     padding: 10px;
+    
 }
 .post-card .user-avatar-container {
     padding: 10px;
