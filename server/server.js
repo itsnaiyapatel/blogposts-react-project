@@ -23,6 +23,9 @@ app.use('/posts', postRouter);
 const commentRouter = require('./routes/Comments');
 app.use('/comments', commentRouter);
 
+const likeRouter = require('./routes/Likes');
+app.use('/likes', likeRouter);
+
 // start server with database
 
 db.sequelize.sync().then(() => {
