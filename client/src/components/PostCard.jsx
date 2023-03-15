@@ -1,35 +1,48 @@
-import React, {useEffect, useState} from "react";
-import UserAvatarContainer from "./UserAvatarContainer";
-import "../assets/css/PostCard.css";
+import React, {useContext, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import axios from "../helper/axiosConfig";
 import {AiOutlineLike, AiOutlineDislike} from "react-icons/ai";
 
+import UserAvatarContainer from "./UserAvatarContainer";
+import "../assets/css/PostCard.css";
+import axios from "../helper/axiosConfig";
+import {AuthContext} from "../helper/AuthContext";
+
 function LikeSection({post}) {
-
+  const {auth} = useContext(AuthContext);
   const [isLiked, setIsLiked] = useState(false);
+  const [likesArray, setLikesArray] = useState([]);
 
-  const handleLike = (post_id) => {
-    axios.post("/likes", {postId: post_id}).then((res) => {
-      if (res.data.isLiked) {
-        console.log("adding 1");
+  useEffect(() => {
+    setLikesArray(post.Likes);
+    post?.Likes?.map((likeObj) => {
+      if (likeObj.UserId == auth.id) {
+        setIsLiked(true);
       } else {
-        console.log("-ve one");
+        setIsLiked(false);
       }
-      setIsLiked(res.data.isLiked);
+    });
+  }, []);
+
+  const likeBtn = (postId) => {
+    axios.post("/likes", {postId: postId}).then((res) => {
+      if (res.data.isLiked) {
+        setIsLiked(true);
+        return setLikesArray([...likesArray, 0]);
+      } else {
+        setIsLiked(false);
+        const tempArray = likesArray;
+        tempArray.pop();
+        return setLikesArray(tempArray);
+      }
     });
   };
 
   return (
     <div className="like-section">
-      <div
-        className="like-btn"
-        onClick={() => handleLike(post.id)}
-        style={{cursor: "pointer"}}
-      >
-        {isLiked ? <AiOutlineDislike size={35} /> : <AiOutlineLike size={35} />}
+      <div className="like-btn" onClick={() => likeBtn(post.id)}>
+        {isLiked ? <AiOutlineDislike size={40} /> : <AiOutlineLike size={40} />}
       </div>
-      <div className="like-count">{post.Likes?.length}</div>
+      <div className="like-count">{likesArray.length}</div>
     </div>
   );
 }

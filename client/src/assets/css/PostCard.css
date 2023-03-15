@@ -29,3 +29,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.like-btn {
+    cursor: pointer;
+}
