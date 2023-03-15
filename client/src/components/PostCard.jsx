@@ -1,7 +1,38 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import UserAvatarContainer from "./UserAvatarContainer";
 import "../assets/css/PostCard.css";
 import {Link} from "react-router-dom";
+import axios from "../helper/axiosConfig";
+import {AiOutlineLike, AiOutlineDislike} from "react-icons/ai";
+
+function LikeSection({post}) {
+
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleLike = (post_id) => {
+    axios.post("/likes", {postId: post_id}).then((res) => {
+      if (res.data.isLiked) {
+        console.log("adding 1");
+      } else {
+        console.log("-ve one");
+      }
+      setIsLiked(res.data.isLiked);
+    });
+  };
+
+  return (
+    <div className="like-section">
+      <div
+        className="like-btn"
+        onClick={() => handleLike(post.id)}
+        style={{cursor: "pointer"}}
+      >
+        {isLiked ? <AiOutlineDislike size={35} /> : <AiOutlineLike size={35} />}
+      </div>
+      <div className="like-count">{post.Likes?.length}</div>
+    </div>
+  );
+}
 
 function PostCard({post}) {
   return (
@@ -15,12 +46,15 @@ function PostCard({post}) {
         <p>{post.postText}</p>
       </Link>
 
-      {post.profileImage && (
-        <UserAvatarContainer
-          profileImage={`http://localhost:3001/${post.profileImage}`}
-          userName={post.userName}
-        />
-      )}
+      <div className="bottom">
+        {post?.User?.profileImage && (
+          <UserAvatarContainer
+            profileImage={`http://localhost:3001/${post.User.profileImage}`}
+            userName={post.User.userName}
+          />
+        )}
+        <LikeSection post={post} />
+      </div>
     </div>
   );
 }

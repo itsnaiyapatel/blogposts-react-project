@@ -19,9 +19,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/auth/authContext", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
+      .get("/auth/authContext")
       .then((res) => {
         if (res.data.error) {
           setAuth({ ...auth, isLoggedIn: false });         

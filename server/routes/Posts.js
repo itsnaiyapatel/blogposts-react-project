@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {Posts, sequelize} = require("../models");
+const {Posts, Likes, Users, Comments, sequelize} = require("../models");
 
 // sending post to the database
 
@@ -18,10 +18,7 @@ router.post("/addpost", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const allPosts = await sequelize.query(
-      `SELECT Posts.id as id, title, categories, postText, userName, profileImage FROM Posts, Users WHERE Users.id = Posts.UserId`,
-      {type: sequelize.QueryTypes.SELECT}
-    );
+    const allPosts = await Posts.findAll({include: [Likes, Users]});
     return res.json(allPosts);
   } catch (error) {
     return res.json({error: error});
@@ -33,11 +30,11 @@ router.get("/", async (req, res) => {
 router.get("/byId/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const post = await sequelize.query(
-      `SELECT Posts.id as id, title, categories, postText, userName, profileImage FROM Posts, Users WHERE Posts.id = ${id} AND Users.id = Posts.UserId`,
-      {type: sequelize.QueryTypes.SELECT}
-    );
-    return res.json(post[0]);
+    const post = await Posts.findOne({
+      where: {id: id},
+      include: [Likes, Comments, Users],
+    });
+    return res.json(post);
   } catch (error) {
     return res.json({error: error});
   }

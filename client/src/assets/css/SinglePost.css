@@ -64,7 +64,6 @@ textarea:focus {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    min-height: 60px;
 }
 .comment-by {
     font-size: 0.8rem;
